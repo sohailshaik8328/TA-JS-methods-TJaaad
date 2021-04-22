@@ -115,44 +115,24 @@ console.log(changeArray(numbers, addFive))
     console.log(sendMessage("Hello Alert!", alert));
     console.log(sendMessage("Hello Prompt!", prompt));
 */
-let log = function (message){
-  return message
-}
-console.log(log(`console.log`))
 
-let alert = function (message){
-  return message
-}
-console.log(alert("Hello Alert!"))
-
-let prompt = function (message){
-  return message
-}
-console.log(prompt("Hello Prompt!"))
 
 function sendMessage(str, cb){
-  let final = [];
-  final.push(str, cb);
-  return final
-  
+  return cb(str);
 }
-console.log(sendMessage("Hello", log("console.log")))
-console.log(sendMessage("Hello Alert!", alert("Alert")))
-console.log(sendMessage("Hello Prompt!", prompt("Prompt")))
+console.log(sendMessage("Hello", console.log));
+console.log(sendMessage("Hello Alert!", alert));
+console.log(sendMessage("Hello Prompt!", prompt));
 
 /*
 
  Create a function named `first` that accepts an argument a function (callback) and return the same function defination.
 
 */
-let cb_func = function(){
-  return `Hello first`
-}
 
 function first(cb){
   return cb
 }
-console.log(first(cb_func))
 
 /*
  Create a function named `second`
@@ -162,11 +142,13 @@ console.log(first(cb_func))
 */
 function second(){
   function third(num){
-    return num + 1
+    return num + 1;
   }
-  return third(22)
+  return third;
 }
-console.log(second())
+let val = second();
+console.log(val)
+
 
 /*
  Write a function named `callMe` which 
@@ -179,10 +161,11 @@ let cb_func_new = function(){
   return `Hai I am callme function`
 }
 function callMe(cb){
-  return cb
+  let final = cb();
+  return final
 }
-let final = callMe(cb_func_new)
-console.log(final)
+let test = callMe(cb_func_new)
+console.log(test)
 
 // Data Starts (Don't change this)
 const people = [
@@ -558,17 +541,15 @@ filter is a higher order function.
     console.log(filter(grade, isGradeC));
 */
 
-// function filter(objects, fn){
-//   let final = [];
-//   for(let obj of objects){
-//     final.push(fn(obj))
-//   }
-//   return final;
-// }
-// console.log(filter(isAdult, filterAdult))
-// console.log(filter(isGradeA_new, filterGradeA))
-// console.log(filter(isGradeB_new, filterGradeB))
-// console.log(filter(isGradeC_new, filterGradeC))
+function filter(arr, cb){
+  let final = [];
+  for(let person of arr){
+    if(cb(person)){
+      final.push(person)
+    }
+  }
+  return final;
+}
 /*
   Create a function named multiplyBy which accepts:
     - a number (num)
