@@ -17,86 +17,90 @@ numbers.indexOf(101)
 numbers.lastIndexOf(9)
 
 // - Convert value of strings array into a sentance like "This is a collection of words"
-let emptyString = ""
-for(let i = 0 ; i < strings.length ; i++){
-  let str = strings[i]
-  emptyString += str + " "
-}
+// let emptyString = ""
+// for(let i = 0 ; i < strings.length ; i++){
+//   let str = strings[i]
+//   emptyString += str + " "
+// }
 // console.log(emptyString)
+strings.join(" ")
 
 // - Add two new words in the strings array "called" and "sentance"
-console.log(strings.push('called ', 'sentence'))
+console.log([...strings].push('called ', 'sentence'))
 
 // - Again convert the updated array (strings) into sentance like "This is a collection of words called sentance"
 // let emptyString = ""
-for(let i = 0 ; i < strings.length ; i++){
-  let str = strings[i]
-  emptyString += str + " "
-}
-console.log(emptyString)
+// for(let i = 0 ; i < strings.length ; i++){
+//   let str = strings[i]
+//   emptyString += str + " "
+// }
+// console.log(emptyString)
+strings.join(" ")
+
 
 // - Remove the first word in the array (strings)
 strings.shift();
 
 // - Find all the words that contain 'is' use string method 'includes'
-strings.map(char => char.includes('is'))
+let allIs = strings.filter(char => char.includes('is'))
 
 // - Find all the words that contain 'is' use string method 'indexOf'
-strings.map(char => char.indexOf('is'))
+let allIsAgain = strings.filter(char => char.indexOf('is') !== -1)
 
 // - Check if all the numbers in numbers array are divisible by three use array method (every)
 numbers.every(num => num % 3 === 0)
 
 // -  Sort Array from smallest to largest
 
-// let sorted_arr = [];
-//  numbers.sort(num => {
-//   if(num > num+1){
-//     sorted_arr.push(num)
-//   }
-//   return sorted_arr
-// });
-// console.log(sorted_arr)
-numbers.sort();
+let largest_num = [...numbers].sort((a, b) => a - b);
+console.log(largest_num)
 
 
 // - Remove the last word in strings
-strings.pop();
+let last_Word = [...strings].pop();
 
 // - Find largest number in numbers
-// for(num of numbers){
-//   return num > num + 1
-// }
+let largest = [...numbers].sort((a, b) => b - a).pop();
 
 // - Find longest string in strings
-strings.map(string => string.length )
+let largest_string = [...strings].sort((a, b) => a.length - b.length).pop();
+console.log(largest_string)
 
 // - Find all the even numbers
 let evenNumbers = numbers.filter(num => num % 2 === 0);
-console.log(evenNumbers)
+// console.log(evenNumbers)
 
 // - Find all the odd numbers
 let oddNumbers = numbers.filter(num => num % 2 !== 0);
-console.log(oddNumbers)
+// console.log(oddNumbers)
 
 // - Place a new word at the start of the array use (unshift)
 strings.unshift('newWord')
 
 // - Make a subset of numbers array [18,9,7,11]
-// numbers.map( num => num)
+console.log(numbers.slice(3, 7));
 
 // - Make a subset of strings array ['a','collection']
-
+strings.slice(4, 5);
 
 // - Replace 12 & 18 with 1221 and 1881
-numbers.map(number => number.replace(12, 1221 && 18, 1881))
-
+// numbers.splice(numbers.indexOf(12), 1, 1221);
+console.log(numbers.map(num => {
+  if(num === 12){
+    return 1221;
+  }else if (num === 18){
+    return 1881;
+  }else{
+    return num;
+  }
+}));
 // - Replace words in strings array with the length of the word
-strings.forEach(char => char.replace('words' , 'word'))
+let string_length = strings.map(string => string.length)
 
 // - Find the sum of the length of words using above question
-strings.map(char => char.length)
-
+string_length.reduce((acc, init) => {
+  return acc + init
+}, 0);
 
 // - Customers Array
 var customers = [
@@ -106,28 +110,34 @@ var customers = [
   { firstname: 'Jack', lastname: 'White' },
 ];
 // - Find all customers whose firstname starts with 'J'
-let start_j = customers.forEach(char => char.length[0] == 'j')
+let start_j = customers.filter(customer =>
+   customer.firstname.startsWith("J"))
 console.log(start_j)
 
 // - Create new array with only first name
-customers.map(char => char.firstname)
+console.log(customers.map(char => char.firstname));
 
 // - Create new array with all the full names (ex: "Joe Blogs")
-let new_arr = [];
-for(let i = 0 ; i < customers.length.firstname ; i++){
-  new_arr += customers.length[i]
-}
-console.log(new_arr)
 
+let fullNameCustomer = customers.map(customer => 
+    `${customer.firstname} ${customer.lastname}`
+)
+console.log(fullNameCustomer)
 // - Sort the array created above alphabetically
-new_arr.sort();
+let sorted_arr = [...fullNameCustomer].sort();
 
 // - Create a new array that contains only user who has at least one vowel in the firstname.
-let vowel_arr = [];
- for(let i = 0 ; i < customers.length ; i++){
-   if(customers.firstname == 'a', customers.firstname == 'e', customers.firstname == 'i', customers.firstname == 'o',
-    customers.firstname == 'u' ){
-      vowel_arr.push(customers.firstname[i])
-    }
-    console.log(vowel_arr)
- }
+let vowel_customer = customers.filter(customer => {
+  if(
+  customer.firstname.toLowerCase().includes('a')||
+  customer.firstname.toLowerCase().includes('e') ||
+  customer.firstname.toLowerCase().includes('i') ||
+  customer.firstname.toLowerCase().includes('o') ||
+  customer.firstname.toLowerCase().includes('u')
+  ){
+    return true
+  }else{
+    return false
+  }
+})
+console.log(vowel_customer)
