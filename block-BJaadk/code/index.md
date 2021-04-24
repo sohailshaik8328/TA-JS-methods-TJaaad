@@ -10,7 +10,7 @@ function double(num) {
 }
 let doubleNum = numbers.forEach(double);
 ```
-![](./img/main.png)
+![](./img/forEach-1.png)
 
 
 ```js
@@ -20,6 +20,8 @@ function double(num) {
 }
 let doubleNum = numbers.forEach(double);
 ```
+![](./img/forEach-return.png)
+
 
 ```js
 let numbers = [100, 200, 33, 45, 65, 76, 51];
@@ -28,6 +30,8 @@ function double(num) {
 }
 let doubleNum = numbers.forEach(double);
 ```
+![](./img/forEach-console.png)
+
 
 ```js
 let numbers = [100, 200, 33, 45, 65, 76, 51];
@@ -36,6 +40,8 @@ function double(num) {
 }
 let doubleNumbers = numbers.map(double);
 ```
+![](./img/map-1)
+
 
 ```js
 let numbers = [100, 200, 33, 45, 65, 76, 51];
@@ -44,6 +50,8 @@ function addTwo(num) {
 }
 let doubleNumbers = numbers.map(addTwo);
 ```
+![](./img/map-plus-operation)
+
 
 ```js
 let numbers = [100, 200, 33, 45, 65, 76, 51];
@@ -52,6 +60,8 @@ function addTwo(num) {
 }
 let doubleNumbers = numbers.map(addTwo);
 ```
+![](./img/map-console)
+
 
 ```js
 let numbers = [100, 200, 33, 45, 65, 76, 51];
@@ -60,6 +70,8 @@ function addTwo(num) {
 }
 let doubleNumbers = numbers.map(addTwo);
 ```
+![](./img/map-alert)
+
 
 ```js
 let numbers = [100, 200, 33, 45, 65, 76, 51];
@@ -68,6 +80,8 @@ function isOdd(num) {
 }
 let oddNumbers = numbers.filter(isOdd);
 ```
+![](./img/filter-odd)
+
 
 ```js
 let numbers = [100, 200, 33, 45, 65, 76, 51];
@@ -76,6 +90,8 @@ function test(num) {
 }
 let filteredNumbers = numbers.filter(test);
 ```
+![](./img/filter-test)
+
 
 ```js
 let numbers = [100, 200, 33, 45, 65, 76, 51];
@@ -84,6 +100,8 @@ function test(num) {
 }
 let filteredNumbers = numbers.filter(test);
 ```
+![](./img/filter-test-console)
+
 
 ```js
 let numbers = [100, 200, 33, 45, 65, 76, 51];
@@ -92,6 +110,8 @@ function add(accumulator, currentValue) {
 }
 let sum = numbers.reduce(add);
 ```
+![](./img/reduce-sum-return)
+
 
 ```js
 let numbers = [100, 200, 33, 45, 65, 76, 51];
@@ -100,3 +120,5 @@ function add(accumulator, currentValue) {
 }
 let sum = numbers.reduce(add);
 ```
+![](./img/reduce-sum-console)
+
