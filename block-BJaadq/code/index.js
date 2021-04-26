@@ -1,45 +1,80 @@
 // NOTE: You can not use reduce methods to solve this exercise
-let got_houses = got.houses
-// console.log(got_people)
-let got_people = got_houses.map(house => house.people)
-console.log(got_people)
 
-let sum = 0;
 function countAllPeople() {
   // your code goes here
-  for(let i = 0 ; i < got_people.length ; i++){
-    sum += got_people[i]
-  }
-  return sum;
-
+  let totalPeople = 0;
+  got.houses.forEach(house => {
+    totalPeople += house.people.length;
+  });
+  return totalPeople
 }
-
 function peopleByHouses() {
   // your code goes here
+  let final = {};
+  got.houses.forEach(house => {
+    final[house.name] = house.people.length;
+  })
+  return final;
+
 }
 
 function everyone() {
   // your code goes here
+  let final = [];
+  got.houses.forEach(house => {
+    let peopleName = house.people.map(person => person.name)
+    final = final.concat(peopleName)
+  });
+  return final;
 }
 
 function nameWithS() {
   // your code goes here
+  let allPeople = everyone();
+  return allPeople.filter((person) => 
+  person.toLowerCase().includes("s")
+  )
 }
 
 function nameWithA() {
   // your code goes here
+  // let allPeople = everyone();
+  // return allPeople.filter((person) => 
+  // person.toLowerCase().includes("a")
+  // )
 }
 
 function surnameWithS() {
   // your code goes here
+  // let allPeople = everyone();
+  // return allPeople.filter((person) => 
+  // person.split(" ")[1].toLowerCase().includes("s")
+  // )
 }
 
 function surnameWithA() {
   // your code goes here
+  // let allPeople = everyone();
+  // return allPeople.filter((person) => 
+  // person.split(" ")[1].toLowerCase().includes("a")
+  // )
+
 }
 
 function peopleNameOfAllHouses() {
   // your code goes here
+  // let final = {};
+  // got.houses.forEach(house => {
+  //   final[house.name] = house.people.map((p) => p.name);
+  // });
+  // return final;
+  let final = {};
+  got.houses.forEach(house => {
+    final[house.name] = house.people.map((p) => 
+      p.name
+    )
+  })
+  return final;
 }
 
 // Testing your result after writing your function
