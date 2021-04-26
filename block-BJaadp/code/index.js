@@ -16,52 +16,79 @@ let persons = [
 // NOTE: Use reduce method whereever you can to solve this exercise:
 
 // Find the average grade
-let peopleGrade = persons.map(person => person.grade)
-// console.log(peopleGrade)
+// let peopleGrade = persons.map(person => person.grade)
+let peopleGrade = persons.reduce((acc, cv) => {
+  return acc + cv.grade
+}, 0)
+console.log(peopleGrade / persons.length)
 
-let avg_people_grade = peopleGrade.reduce((acc, cv) => {
-  return acc + cv
-}, 0) / peopleGrade.length
-console.log(avg_people_grade)
+// let avg_people_grade = peopleGrade.reduce((acc, cv) => {
+//   return acc + cv
+// }, 0) / peopleGrade.length
+// console.log(avg_people_grade)
 
 // Find the average grade of male
 
-let people_male_grade = persons.filter(person => person.sex == "M")
-.map(person => person.grade)
+// let people_male_grade = persons.filter(person => person.sex == "M")
+// .map(person => person.grade)
 // console.log(people_male_grade)
-let avg_people_grade_male = people_male_grade.reduce((acc, cv) => {
-  return acc + cv
-}, 0) / people_male_grade.length
+// let avg_people_grade_male = people_male_grade.reduce((acc, cv) => {
+//   return acc + cv
+// }, 0) / people_male_grade.length
+
+let avg_people_grade_male = persons.filter(person => person.sex === "M")
+.reduce((acc, cv) => {
+  return acc + cv.grade;
+}, 0) / persons.length
 
 console.log(avg_people_grade_male)
 
 
 // Find the average grade of female
 
-let people_female_grade = persons.filter(person => person.sex == "F")
-.map(person => person.grade)
+// let people_female_grade = persons.filter(person => person.sex == "F")
+// .map(person => person.grade)
 
-let avg_people_grade_female = people_female_grade.reduce((acc, cv) => {
-  return acc + cv
-}, 0) / people_female_grade.length
+// let avg_people_grade_female = people_female_grade.reduce((acc, cv) => {
+//   return acc + cv
+// }, 0) / people_female_grade.length
+
+let avg_people_grade_female =  persons.filter(person => person.sex === "F")
+.reduce((acc, cv) => {
+  return acc + cv.grade;
+}, 0) / persons.length
+
 
 console.log(avg_people_grade_female)
+
 // Find the highest grade
-let highest_grade = peopleGrade.sort((a, b) => a - b ).pop();
+let highest_grade = persons.map(person => person.grade).sort((a, b) => a - b).pop();
 console.log(highest_grade)
 
 // Find the highest grade in male
-let highest_grade_male = people_male_grade.sort((a, b) => a - b ).pop();
+// let highest_grade_male = people_male_grade.sort((a, b) => a - b ).pop();
+// console.log(highest_grade_male)
+
+let highest_grade_male = persons.filter(person => person.sex === "M")
+.map(person => person.grade)
+.sort((a, b) => a - b).pop();
 console.log(highest_grade_male)
 
 // Find the highest grade in female
-let highest_grade_female = people_female_grade.sort((a, b) => a - b ).pop();
+// let highest_grade_female = people_female_grade.sort((a, b) => a - b ).pop();
+// console.log(highest_grade_female)
+
+let highest_grade_female = persons.filter(person => person.sex === "F")
+.map(person => person.grade)
+.sort((a, b) => a - b).pop();
 console.log(highest_grade_female)
 
 // Find the highest grade for people whose name starts with 'J' or 'P'
-let hign_grade_name_JP = persons.find(person =>
-   person.name.startsWith("J") || person.name.startsWith("P"))
-   console.log(hign_grade_name_JP)
+let name_JP = persons.filter(person =>
+ person.name.startsWith('J') || person.name.startsWith('P'))
+ .map(person => person.grade)
+ .sort((a, b) => a - b).pop();
+ console.log(name_JP)
 
 const fruitBasket = [
   'banana',
@@ -85,10 +112,15 @@ that fruit has appeared in the array. Store it in new variable fruitsObj
 Output: 
 {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
 */
-    // let fruitsObj = {}
-    // fruitBasket.map(fruit =>{
-      
-    // })
+  let fruitObj = fruitBasket.reduce((acc, cv) => {
+    if(acc[cv]){
+      acc[cv] += 1
+    }else{
+      acc[cv] = 1
+    }
+    return acc;
+  }, {})
+  console.log(fruitObj)
 /* 
 
 Use the fruitBasket array to create an array of array. Each array will contain two values name of fruit and number of times
@@ -98,6 +130,11 @@ Output:
 
 [['banana', 2], ['cherry', 3], ['orange', 3], ['apple', 2], ['fig', 1]]
 */
+let fruitsArray = Object.keys(fruitObj).reduce((acc, cv) => {
+  acc = acc.concat([[cv, fruitObj[cv]]])
+  return acc;
+}, [])
+console.log(fruitsArray)
 
 const data = [
   [1, 2, 3],
@@ -107,12 +144,18 @@ const data = [
 ];
 
 // Using reduce flat data array
-let flat_data = data.flat(Infinity)
+// let flat_data = data.flat(Infinity)
 
-let reduce_data = flat_data.reduce((acc, cv) => {
-  return acc + cv
-})
-console.log(reduce_data)
+// let reduce_data = flat_data.reduce((acc, cv) => {
+//   return acc + cv
+// })
+// console.log(reduce_data)
+
+let flat_data = data.reduce((acc, cv) => {
+  acc = acc.concat(cv)
+  return acc;
+}, [])
+console.log(flat_data)
 
 const dataTwo = [
   [1, 2, 3],
@@ -123,12 +166,18 @@ const dataTwo = [
 
 
 // Using reduce flat dataTwo array
-let flat_dataTwo = dataTwo.flat(Infinity)
+// let flat_dataTwo = dataTwo.flat(Infinity)
 
-let reduce_dataTwo = flat_dataTwo.reduce((acc, cv) => {
-  return acc + cv
-})
-console.log(reduce_dataTwo)
+// let reduce_dataTwo = flat_dataTwo.reduce((acc, cv) => {
+//   return acc + cv
+// })
+// console.log(reduce_dataTwo)
+let flat_dataTwo = dataTwo.reduce((acc, cv) => {
+  acc = acc.concat(cv.flat(Infinity))
+  return acc;
+}, [])
+console.log(flat_dataTwo)
+
 
 /*
 
@@ -180,6 +229,12 @@ EXAMPLE:
 
   ...
 */
+let pipeline_reduce = pipeline.reduce((acc, cv) => {
+  acc = cv(acc);
+  return acc;
+}, 3)
+console.log(pipeline_reduce)
+
 
 let pipeline2 = [
   increment,
@@ -196,3 +251,8 @@ let pipeline2 = [
 ];
 
 // Find the output using pipeline2 the initial value if 8
+let pipeline2_reduce = pipeline2.reduce((acc, cv) => {
+  acc = cv(acc)
+  return acc;
+}, 8)
+console.log(pipeline2_reduce)
