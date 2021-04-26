@@ -1,7 +1,17 @@
 // NOTE: You can not use reduce methods to solve this exercise
+let got_houses = got.houses
+// console.log(got_people)
+let got_people = got_houses.map(house => house.people)
+console.log(got_people)
 
+let sum = 0;
 function countAllPeople() {
   // your code goes here
+  for(let i = 0 ; i < got_people.length ; i++){
+    sum += got_people[i]
+  }
+  return sum;
+
 }
 
 function peopleByHouses() {
